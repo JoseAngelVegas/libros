@@ -1167,15 +1167,14 @@ const botonPv = document.querySelector('#PoliticaDePrivacidad');
 
 const textoPv = document.querySelectorAll('.Pv');
 
+const botonCerrarPv = document.querySelector('#Cerrar');
+
        botonPv.addEventListener('click', function() {
     textoPv.forEach(p => p.classList.add('mostrar'));
     textoPv.forEach(p => p.classList.remove('esconder'));
 
        }
                             
-
-
-const botonCerrarPv = document.querySelector('#Cerrar');
 
 botonCerrarPv.addEventListener('click', function() {
     [Pv].forEach(grupo => {
