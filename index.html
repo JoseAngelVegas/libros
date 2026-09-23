@@ -13,20 +13,7 @@ animation-name: videoDeFondo;
 animation-duration: 5s;
       }
       
-    #loader-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            transition: opacity 0.2s ease, visibility 0.2s ease;
-        }
+  
       
 
         .spinner {
@@ -350,8 +337,8 @@ width: 25%;
 }
 
 @keyframes AnimacionAburrido {
-  0% {opacity: 0; font-size: 0px;}
-  100% {opacity: 1; font-size: 20px;}
+  0% {opacity: 0; font-size: 0px;  top: -500px;}
+  100% {opacity: 1; font-size: 20px; top: -250px;}
 }
 
 @keyframes Libro {
@@ -820,8 +807,16 @@ function saltarIntroduccion() {
 document.getElementById("Empezar").style.animationPlayState = "running";
         document.getElementById("Texto").style.animationPlayState = "running";
                document.getElementById("Creditos").style.animationPlayState = "running";
-          document.getElementById("TerminosYCondiciones").style.animationPlayState = "running";
-    document.getElementById("PoliticaDePrivacidad").style.animationPlayState = "running";
+          
+         
+document.getElementById("TerminosYCondiciones").style.animation = "CositasMas";
+       document.getElementById("TerminosYCondiciones").style.animationPlayState = "running";
+        document.getElementById("TerminosYCondiciones").style.animationFillMode = "both";
+        
+         document.getElementById("PoliticaDePrivacidad").style.animation = "CositasMas";
+       document.getElementById("PoliticaDePrivacidad").style.animationPlayState = "running";
+        document.getElementById("PoliticaDePrivacidad").style.animationFillMode = "both";
+
        
 }
 
@@ -1076,7 +1071,7 @@ document.getElementById("Leer1").style.visibility = "hidden";
 
 }
 
-         const cerrarInicio2 = document.querySelectorAll(".TyC, .Pv, .Creditos");
+         const cerrarInicio2 = document.querySelectorAll(".TyC, .Creditos");
       for (let i = 0; i < cerrarInicio2.length; i++) {
          cerrarInicio2[i].style.fontSize = "0px";
          
@@ -1087,6 +1082,14 @@ document.getElementById("Leer1").style.visibility = "hidden";
     }
 
 function TerminosYCondiciones() {
+
+   const abrirTyC = document.querySelectorAll(".TyC");
+      for (let i = 0; i < abrirTyC.length; i++) {
+         abrirTyC[i].style.fontSize = "20px";
+         abrirTyC[i].style.visibility = "visible";
+         
+
+}
 
 document.getElementById("EspacioTyC").style.gap = "20px";
    
@@ -1116,18 +1119,13 @@ document.getElementById("Creditos").style.animationFillMode = "both";
         document.getElementById("Cerrar").style.visibility = "visible";
   document.getElementById("Cerrar").style.fontSize = "20px";
 
-         const abrirTyC = document.querySelectorAll(".TyC");
-      for (let i = 0; i < abrirTyC.length; i++) {
-         abrirTyC[i].style.fontSize = "20px";
-         abrirTyC[i].style.visibility = "visible";
-         
-
-}
+     
 
 }
       
       
 function PoliticaDePrivacidad() {
+
 
 document.getElementById("EspacioPv").style.gap = "20px";
    
@@ -1157,17 +1155,21 @@ document.getElementById("Creditos").style.animationFillMode = "both";
         document.getElementById("Cerrar").style.visibility = "visible";
   document.getElementById("Cerrar").style.fontSize = "20px";
 
-          const abrirPv = document.querySelectorAll(".Pv");
-      for (let i = 0; i < abrirPv.length; i++) {
-         abrirPv[i].style.animation = "AnimacionAburrido";
-         abrirPv[i].style.animationPlayState = "running";
-         abrirPv[i].style.animationFillMode = "both";
-         
-
-}
+      
 
 
 }
+
+const botonPv = document.querySelector('#PoliticaDePrivacidad');
+
+const textoPv = document.querySelectorAll('.Pv');
+
+       botonPv.addEventListener('click', function() {
+    textoPv.forEach(p => p.classList.add('mostrar'));
+    textoPv.forEach(p => p.classList.remove('esconder'));
+});
+
+
        
 function Creditos() {
 
@@ -1340,13 +1342,31 @@ document.getElementById("Creditos").style.animationFillMode = "both";
   font-size: 0px;
 }
 
-          .Pv {
+.Pv {
+ position: relative;
+  display: flex;
+ animation: CositasMas 1s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+margin: 0 auto;
+
+}
+          .Pv.mostrar {
+          position: relative;
+  display: flex;
+ animation: AnimacionAburrido 1s;
+animation-play-state: running;
+  animation-fill-mode: both;
   position: relative;
   display: flex;
 margin: 0 auto;
-  font-size: 0px;
-animation: AnimacionAburrido 0.8s both;
-animation-play-state: paused;
+
+}
+
+ .Pv.esconder {
+  position: relative;
+  display: flex;
+margin: 0 auto;
 
 }
 
