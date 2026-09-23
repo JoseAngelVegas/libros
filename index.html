@@ -12,8 +12,8 @@
 animation-name: videoDeFondo;
 animation-duration: 5s;
       }
-
-       #loader-wrapper {
+      
+    #loader-wrapper {
             position: fixed;
             top: 0;
             left: 0;
@@ -27,6 +27,7 @@ animation-duration: 5s;
             z-index: 1000;
             transition: opacity 0.2s ease, visibility 0.2s ease;
         }
+      
 
         .spinner {
             width: 80px;
@@ -290,10 +291,6 @@ backdrop-filter: blur(20px);
 border: 1px solid rgba(255, 2, 2, 0.1);
    }
 
-input {
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
 
        
         #Enviado {
@@ -469,7 +466,7 @@ width: 25%;
 
 <form name="formulario" method="post" action="https://script.google.com/macros/s/AKfycbzRde1ZZvK0DygQyOKX03ZPIxm2CM0mZlgZeHx6bx-I2n1Y_eItBRHVTzc0cBgGceDz/exec">
 
-<textarea name="Comentarios" class="Comentario" id="escribirTexto" type="text" placeholder="..." rows="4" cols="50"/>
+<textarea name="Comentarios" class="Comentario" id="escribirTexto" type="text" placeholder="Escribe acá tu opinión." rows="20" cols="0"></textarea>
 
 <label for="publicacion" class="Comentario" id="label"></label>
 
@@ -1308,8 +1305,8 @@ document.getElementById("Creditos").style.animationFillMode = "both";
     visibility: hidden;
   text-align: center;
   font-size: 0px;
-    width: 50%;
-      height: 50%;
+    width: 85%;
+      height: 10%;
 }
 
         .Creditos {
