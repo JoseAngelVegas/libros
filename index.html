@@ -337,8 +337,8 @@ width: 25%;
 }
 
 @keyframes AnimacionAburrido {
-  0% {opacity: 0; font-size: 0px;  top: -500px;}
-  100% {opacity: 1; font-size: 20px; top: -250px;}
+  0% {opacity: 0;  top: -500px;}
+  100% {opacity: 1; top: -300px;}
 }
 
 @keyframes Libro {
@@ -1343,6 +1343,7 @@ document.getElementById("Creditos").style.animationFillMode = "both";
 }
 
 .Pv {
+font-size: 0px !important;
  position: relative;
   display: flex;
  animation: CositasMas 1s;
@@ -1354,6 +1355,7 @@ margin: 0 auto;
           .Pv.mostrar {
           position: relative;
   display: flex;
+font-size: 20px !important;
  animation: AnimacionAburrido 1s;
 animation-play-state: running;
   animation-fill-mode: both;
