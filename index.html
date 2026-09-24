@@ -456,8 +456,8 @@ width: 25%;
 
 <p class="Boton" id="saltar" onclick="saltarIntroduccion()"> Saltar </p>
 
-<p class="CositasMas" id="TerminosYCondiciones" onclick="TerminosYCondiciones()"> Términos y Condiciones. </p>
-<p class="CositasMas" id="PoliticaDePrivacidad" onclick="PoliticaDePrivacidad()"> Política de privacidad. </p>   
+<p class="CositasMas" id="TerminosYCondiciones" onclick="TerminosYCondiciones(); window.scrollTo({ top: 0, behavior: 'smooth' })"> Términos y Condiciones. </p>
+<p class="CositasMas" id="PoliticaDePrivacidad" onclick="PoliticaDePrivacidad(); window.scrollTo({ top: 0, behavior: 'smooth' });"> Política de privacidad. </p>   
 
 
 <button id="Cerrar" onclick="cerrar()"> X </button>
@@ -1352,7 +1352,8 @@ display: none;
 font-size: 0px;
 display: none;
  position: relative;
-  display: flex;
+display: flex;
+top: 0px;
 margin: 0 auto;
 
 }
