@@ -1074,9 +1074,10 @@ document.getElementById("Leer1").style.visibility = "hidden";
 
 }
 
-         const cerrarInicio2 = document.querySelectorAll(".TyC, .Creditos");
+         const cerrarInicio2 = document.querySelectorAll(".TyC, .Pv, .Creditos");
       for (let i = 0; i < cerrarInicio2.length; i++) {
          cerrarInicio2[i].style.fontSize = "0px";
+       
          
 
 }
@@ -1088,9 +1089,11 @@ function TerminosYCondiciones() {
 
    const abrirTyC = document.querySelectorAll(".TyC");
       for (let i = 0; i < abrirTyC.length; i++) {
-         abrirTyC[i].style.fontSize = "20px";
-         abrirTyC[i].style.visibility = "visible";
-         
+abrirTyC[i].style.fontSize = "20px";
+abrirTyC[i].style.visibility = "visible";
+ abrirTyC[i].style.visibility = "block";
+
+
 
 }
 
@@ -1129,6 +1132,14 @@ document.getElementById("Creditos").style.animationFillMode = "both";
       
 function PoliticaDePrivacidad() {
 
+   const abrirTyC = document.querySelectorAll(".Pv");
+      for (let i = 0; i < abrirTyC.length; i++) {
+       abrirTyC[i].style.fontSize = "20px";
+       abrirTyC[i].style.visibility = "visible";
+       abrirTyC[i].style.display = "block";
+       
+}
+
 
 document.getElementById("EspacioPv").style.gap = "20px";
    
@@ -1162,32 +1173,6 @@ document.getElementById("Creditos").style.animationFillMode = "both";
 
 
 }
-
-const botonPv = document.querySelector('#PoliticaDePrivacidad');
-
-const textoPv = document.querySelectorAll('.Pv');
-
-const botonCerrarPv = document.querySelector('#Cerrar');
-
-       botonPv.addEventListener('click', function() {
-    textoPv.forEach(p => p.classList.add('mostrar'));
-    textoPv.forEach(p => p.classList.remove('esconder'));
-
-       }
-                            
-
-botonCerrarPv.addEventListener('click', function() {
-    [Pv].forEach(grupo => {
-        grupo.forEach(p => {
-            p.classList.remove('mostrar');
-            p.classList.add('esconder');
-        }
-                      }
-                 
-                               
-});
-
-
        
 function Creditos() {
 
@@ -1354,19 +1339,18 @@ document.getElementById("Creditos").style.animationFillMode = "both";
 }
 
         .TyC {
+font-size: 0px;
+display: none;
   position: relative;
   display: flex;
    margin: 0 auto;
-  font-size: 0px;
 }
 
 .Pv {
-font-size: 0px !important;
+font-size: 0px;
+display: none;
  position: relative;
   display: flex;
- animation: CositasMas 1s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
 margin: 0 auto;
 
 }
