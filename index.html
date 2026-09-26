@@ -44,14 +44,14 @@ animation-duration: 5s;
  #Introduccion {
 object-fit: cover;
   position: absolute;
+animation-play-state: paused;
+  animation-fill-mode: both;
   top: 0;
   left: 0;
   width: 75%;
   height: 100%;
   object-position: center;
   animation: SaltarIntroduccion 0.1s;
-  animation-play-state: paused;
-  animation-fill-mode: both;
   margin: 0;
   padding: 0;
 }     
@@ -761,21 +761,20 @@ fetch(scriptUrl, {method: 'POST', body: new FormData(form)})
 
  <script>
 
+window.addEventListener('load', function() {
+        const loader = document.getElementById('loader-wrapper');
+        const introduccion = document.getElementById('Introduccion');
+        
+        loader.classList.add('loader-hidden');
 
-        window.addEventListener('load', function() {
-            const loader = document.getElementById('loader-wrapper');
-            const introduccion = document.getElementById('Introduccion');
-            
-            loader.classList.add('loader-hidden');
+        if (introduccion) {
+            introduccion.style.animationPlayState = 'running';
+        }
 
-            if (introduccion) {
-                introduccion.style.animationPlayState = 'running';
-            }
-
-            setTimeout(() => {
-                loader.remove();
-            }, 800);
-        });
+        setTimeout(() => {
+            loader.remove();
+        }, 800);
+    });
         
     </script>
        
