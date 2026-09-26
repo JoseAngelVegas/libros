@@ -766,29 +766,18 @@ window.addEventListener('load', function() {
     const introduccion = document.getElementById('Introduccion');
 
     if (introduccion) {
-        const iniciarReproduccion = () => {
-            setTimeout(() => {
-                loader.classList.add('loader-hidden');
+        introduccion.play().catch(error => {
+            console.log("El navegador bloqueó la reproducción automática en segundo plano:", error);
+        });
 
-                introduccion.play().catch(error => {
-                    console.log("El navegador bloqueó la reproducción automática sin interacción:", error);
-                });
-
-                setTimeout(() => {
-                    loader.remove();
-                }, 800); 
-            }, 1000);
-        };
-
-        if (introduccion.readyState >= 4) {
-            iniciarReproduccion();
-        } else {
-            introduccion.addEventListener('canplaythrough', iniciarReproduccion, { once: true });
-        }
-    } else {
+      
         setTimeout(() => {
             loader.classList.add('loader-hidden');
-            setTimeout(() => loader.remove(), 800);
+
+            setTimeout(() => {
+                loader.remove();
+            }, 800);
+
         }, 1000);
     }
 });
