@@ -760,15 +760,23 @@ fetch(scriptUrl, {method: 'POST', body: new FormData(form)})
 </script>
 
  <script>
+
+
         window.addEventListener('load', function() {
             const loader = document.getElementById('loader-wrapper');
+            const introduccion = document.getElementById('Introduccion');
             
             loader.classList.add('loader-hidden');
+
+            if (introduccion) {
+                introduccion.style.animationPlayState = 'running';
+            }
 
             setTimeout(() => {
                 loader.remove();
             }, 800);
         });
+        
     </script>
        
 <script>
