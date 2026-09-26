@@ -762,21 +762,36 @@ fetch(scriptUrl, {method: 'POST', body: new FormData(form)})
  <script>
 
 window.addEventListener('load', function() {
-        const loader = document.getElementById('loader-wrapper');
-        const introduccion = document.getElementById('Introduccion');
-        
-        loader.classList.add('loader-hidden');
+    const loader = document.getElementById('loader-wrapper');
+    const introduccion = document.getElementById('Introduccion');
 
-        if (introduccion) {
-            introduccion.play().catch(error => {
-                console.log("El navegador bloqueó la reproducción automática sin interacción:", error);
-            });
+    if (introduccion) {
+        const iniciarReproduccion = () => {
+            setTimeout(() => {
+                loader.classList.add('loader-hidden');
+
+                introduccion.play().catch(error => {
+                    console.log("El navegador bloqueó la reproducción automática sin interacción:", error);
+                });
+
+                setTimeout(() => {
+                    loader.remove();
+                }, 800); 
+            }, 1000);
+        };
+
+        if (introduccion.readyState >= 4) {
+            iniciarReproduccion();
+        } else {
+            introduccion.addEventListener('canplaythrough', iniciarReproduccion, { once: true });
         }
-
+    } else {
         setTimeout(() => {
-            loader.remove();
-        }, 800);
-    });
+            loader.classList.add('loader-hidden');
+            setTimeout(() => loader.remove(), 800);
+        }, 1000);
+    }
+});
         
     </script>
        
