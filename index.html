@@ -550,6 +550,8 @@ width: 25%;
 <img class="Biologia"  src="https://github.com/JoseAngelVegas/borrador/blob/main/0.49.jpg?raw=true">
 <img class="Biologia"  src="https://github.com/JoseAngelVegas/borrador/blob/main/0.50.jpg?raw=true">
 
+<audio id="musicaFondo" src="Musica.mp3" preload="auto"></audio>
+
 </div>
 
 <div id="BotonesEspacio">
@@ -788,6 +790,32 @@ window.addEventListener('load', function() {
 });
         
     </script>
+
+<script>
+const audioMusica = document.getElementById('musicaFondo');
+const elementoPrueba = document.getElementById('PruebaSonido');
+
+if (elementoPrueba) {
+    const observerOptions = {
+        root: null,
+        rootMargin: "-49% 0px -49% 0px",
+        threshold: 0
+    };
+
+    const soundObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                audioMusica.currentTime = 0;
+                audioMusica.play().catch(e => {
+                    console.log("El navegador bloqueó el autoplay del audio hasta que el usuario interactúe con la página.");
+                });
+            }
+        });
+    }, observerOptions);
+
+    soundObserver.observe(elementoPrueba);
+}
+</script>
        
 <script>
 
