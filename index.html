@@ -769,6 +769,12 @@ window.addEventListener('load', function() {
             console.log("El navegador bloqueó la reproducción automática en segundo plano:", error);
         });
 
+       introduccion.addEventListener('ended', function() {
+            if (typeof saltarIntroduccion === 'function') {
+                saltarIntroduccion();
+            }
+        });
+
       
         setTimeout(() => {
             loader.classList.add('loader-hidden');
