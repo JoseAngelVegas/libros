@@ -1170,6 +1170,13 @@ document.getElementById("Leer1").style.visibility = "hidden";
 
 function TerminosYCondiciones() {
 
+       const audioAbrir = document.getElementById('audioAbrir');
+    if (audioAbrir) {
+        audioAbrir.play().catch(error => {
+            console.log("El navegador requiere interacción para reproducir el audio:", error);
+        });
+    }
+
    const abrirTyC = document.querySelectorAll(".TyC");
       for (let i = 0; i < abrirTyC.length; i++) {
 abrirTyC[i].style.fontSize = "20px";
@@ -1206,17 +1213,17 @@ document.getElementById("Creditos").style.animationFillMode = "both";
         document.getElementById("Cerrar").style.visibility = "visible";
   document.getElementById("Cerrar").style.fontSize = "20px";
 
-     const audioAbrir = document.getElementById('audioAbrir');
+}
+      
+      
+function PoliticaDePrivacidad() {
+
+       const audioAbrir = document.getElementById('audioAbrir');
     if (audioAbrir) {
         audioAbrir.play().catch(error => {
             console.log("El navegador requiere interacción para reproducir el audio:", error);
         });
     }
-
-}
-      
-      
-function PoliticaDePrivacidad() {
 
    const abrirTyC = document.querySelectorAll(".Pv");
       for (let i = 0; i < abrirTyC.length; i++) {
@@ -1256,13 +1263,7 @@ document.getElementById("Creditos").style.animationFillMode = "both";
         document.getElementById("Cerrar").style.visibility = "visible";
   document.getElementById("Cerrar").style.fontSize = "20px";
 
-      
-const audioAbrir = document.getElementById('audioAbrir');
-    if (audioAbrir) {
-        audioAbrir.play().catch(error => {
-            console.log("El navegador requiere interacción para reproducir el audio:", error);
-        });
-    }
+
 
 }
        
