@@ -451,6 +451,12 @@ width: 25%;
 <audio id="audioAbrir" src="SonidoDeAbrir.wav" preload="auto"></audio>
 
 <audio id="audioCerrar" src="SonidoDeCerrar.wav" preload="auto"></audio>
+
+
+
+<audio id="audioEpisodio1Abrir" src="Episodio1Abrir.wav" preload="auto"></audio>
+<audio id="audioEpisodio2Abrir" src="Episodio2Abrir.wav" preload="auto"></audio>
+<audio id="audioEpisodio3Abrir" src="Episodio3Abrir.wav" preload="auto"></audio>
        
 
 <p class="Texto" id="Texto"> Algo pasa por la mente de Print. Click en él para entrar a su mente. </p>
@@ -1047,16 +1053,49 @@ document.getElementById("reset").style.visibility = "hidden";
   }
   
      function Episodio1() {
+
+        const audio = document.getElementById("audioEpisodio1Abrir");
+    
+    if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.play().catch(error => {
+            console.log("Error al reproducir el audio:", error);
+        });
+    }
+            
   document.getElementById("Espacio1").style.gap = "20px";
   
   }
   
     function Episodio2() {
+
+            const audio = document.getElementById("audioEpisodio2Abrir");
+    
+    if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.play().catch(error => {
+            console.log("Error al reproducir el audio:", error);
+        });
+    }
+           
   document.getElementById("Espacio2").style.gap = "20px";
   
   }
   
   function Episodio3() {
+
+          const audio = document.getElementById("audioEpisodio3Abrir");
+    
+    if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.play().catch(error => {
+            console.log("Error al reproducir el audio:", error);
+        });
+    }
+         
   document.getElementById("Espacio3").style.gap = "20px";
   
   }
