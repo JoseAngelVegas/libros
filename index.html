@@ -1221,10 +1221,13 @@ document.getElementById("Creditos").style.animationFillMode = "both";
       
 function PoliticaDePrivacidad() {
 
-       const audioAbrir = document.getElementById('audioAbrir');
-    if (audioAbrir) {
-        audioAbrir.play().catch(error => {
-            console.log("El navegador requiere interacción para reproducir el audio:", error);
+      const audio = document.getElementById("audioAbrir");
+    
+    if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.play().catch(error => {
+            console.log("Error al reproducir el audio:", error);
         });
     }
 
@@ -1272,6 +1275,16 @@ document.getElementById("Creditos").style.animationFillMode = "both";
        
 function Creditos() {
 
+        const audio = document.getElementById("audioAbrir");
+    
+    if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.play().catch(error => {
+            console.log("Error al reproducir el audio:", error);
+        });
+    }
+
        document.getElementById("EspacioCreditos").style.gap = "20px";
    
 
@@ -1306,13 +1319,6 @@ document.getElementById("Creditos").style.animationFillMode = "both";
          
 
 }
-
-const audioAbrir = document.getElementById('audioAbrir');
-    if (audioAbrir) {
-        audioAbrir.play().catch(error => {
-            console.log("El navegador requiere interacción para reproducir el audio:", error);
-        });
-    }
 
 }
       
