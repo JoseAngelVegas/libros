@@ -1170,10 +1170,13 @@ document.getElementById("Leer1").style.visibility = "hidden";
 
 function TerminosYCondiciones() {
 
-       const audioAbrir = document.getElementById('audioAbrir');
-    if (audioAbrir) {
-        audioAbrir.play().catch(error => {
-            console.log("El navegador requiere interacción para reproducir el audio:", error);
+     const audio = document.getElementById("audioAbrir");
+    
+    if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.play().catch(error => {
+            console.log("Error al reproducir el audio:", error);
         });
     }
 
