@@ -445,6 +445,8 @@ width: 25%;
 <div id="loader-wrapper">
         <div class="spinner"></div>
     </div>
+
+<audio id="audioOlas" src="Olas.mp3" loop preload="auto"></audio>
        
 
 <p class="Texto" id="Texto"> Algo pasa por la mente de Print. Click en él para entrar a su mente. </p>
@@ -879,6 +881,14 @@ document.getElementById("TerminosYCondiciones").style.animation = "CositasMas";
          document.getElementById("PoliticaDePrivacidad").style.animation = "CositasMas";
        document.getElementById("PoliticaDePrivacidad").style.animationPlayState = "running";
         document.getElementById("PoliticaDePrivacidad").style.animationFillMode = "both";
+
+const audioOlas = document.getElementById('audioOlas');
+    if (audioOlas) {
+        audioOlas.play().catch(error => {
+            console.log("El navegador requiere interacción para reproducir el audio de las olas:", error);
+        });
+    }
+}
 
        
 }
