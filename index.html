@@ -449,6 +449,8 @@ width: 25%;
 <audio id="audioOlas" src="Olas.mp3" loop preload="auto"></audio>
 
 <audio id="audioAbrir" src="SonidoDeAbrir.wav" preload="auto"></audio>
+
+<audio id="audioCerrar" src="SonidoDeCerrar.wav" preload="auto"></audio>
        
 
 <p class="Texto" id="Texto"> Algo pasa por la mente de Print. Click en él para entrar a su mente. </p>
@@ -867,6 +869,16 @@ botonCerrar.addEventListener('click', function() {
 
 function saltarIntroduccion() {
 
+          const audio = document.getElementById("audioCerrar");
+    
+    if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.play().catch(error => {
+            console.log("Error al reproducir el audio:", error);
+        });
+    }
+
     document.getElementById("Introduccion").style.animationPlayState = "running";
     document.getElementById("saltar").style.animationPlayState = "running";
     document.getElementById("Letrero").style.animationPlayState = "running";
@@ -1052,6 +1064,16 @@ document.getElementById("reset").style.visibility = "hidden";
        
        
  function cerrar() {
+
+           const audio = document.getElementById("audioCerrar");
+    
+    if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.play().catch(error => {
+            console.log("Error al reproducir el audio:", error);
+        });
+    }
 
                        document.getElementById("Enviado").style.fontSize = "0px";
         
