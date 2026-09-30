@@ -447,6 +447,8 @@ width: 25%;
     </div>
 
 <audio id="audioOlas" src="Olas.mp3" loop preload="auto"></audio>
+
+<audio id="audioAbrir" src="SonidoDeAbrir.wav" preload="auto"></audio>
        
 
 <p class="Texto" id="Texto"> Algo pasa por la mente de Print. Click en él para entrar a su mente. </p>
@@ -931,6 +933,13 @@ document.getElementById("Creditos").style.animationFillMode = "both";
   
     document.getElementById("Episodio3").style.visibility = "visible";
     document.getElementById("Episodio3").style.fontSize = "50px";
+
+const audioAbrir = document.getElementById('audioAbrir');
+    if (audioAbrir) {
+        audioAbrir.play().catch(error => {
+            console.log("El navegador requiere interacción para reproducir el audio:", error);
+        });
+    }
 }
        
         function input() {
@@ -1015,6 +1024,13 @@ document.getElementById("reset").style.visibility = "hidden";
         
               function Leer1() {
   document.getElementById("EspacioBiologia").style.gap = "20px";
+
+       const audioAbrir = document.getElementById('audioAbrir');
+    if (audioAbrir) {
+        audioAbrir.play().catch(error => {
+            console.log("El navegador requiere interacción para reproducir el audio:", error);
+        });
+    }
   
   }
   
@@ -1160,8 +1176,6 @@ abrirTyC[i].style.fontSize = "20px";
 abrirTyC[i].style.visibility = "visible";
  abrirTyC[i].style.visibility = "block";
 
-
-
 }
 
 document.getElementById("EspacioTyC").style.gap = "20px";
@@ -1192,7 +1206,12 @@ document.getElementById("Creditos").style.animationFillMode = "both";
         document.getElementById("Cerrar").style.visibility = "visible";
   document.getElementById("Cerrar").style.fontSize = "20px";
 
-     
+     const audioAbrir = document.getElementById('audioAbrir');
+    if (audioAbrir) {
+        audioAbrir.play().catch(error => {
+            console.log("El navegador requiere interacción para reproducir el audio:", error);
+        });
+    }
 
 }
       
@@ -1238,7 +1257,12 @@ document.getElementById("Creditos").style.animationFillMode = "both";
   document.getElementById("Cerrar").style.fontSize = "20px";
 
       
-
+const audioAbrir = document.getElementById('audioAbrir');
+    if (audioAbrir) {
+        audioAbrir.play().catch(error => {
+            console.log("El navegador requiere interacción para reproducir el audio:", error);
+        });
+    }
 
 }
        
@@ -1278,6 +1302,13 @@ document.getElementById("Creditos").style.animationFillMode = "both";
          
 
 }
+
+const audioAbrir = document.getElementById('audioAbrir');
+    if (audioAbrir) {
+        audioAbrir.play().catch(error => {
+            console.log("El navegador requiere interacción para reproducir el audio:", error);
+        });
+    }
 
 }
       
