@@ -916,7 +916,7 @@ function saltarIntroduccion() {
   if (audio) {
       audio.pause();
       audio.currentTime = 0;
-      audio.volume = 0.25;
+      audio.volume = 0;
       audio.play().catch(error => {
           console.log("Error al reproducir el audio:", error);
       });
