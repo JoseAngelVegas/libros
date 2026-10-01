@@ -911,16 +911,6 @@ botonCerrar.addEventListener('click', function() {
 
 function saltarIntroduccion() {
 
-        const audio = document.getElementById("audioCerrar");
-    
-  if (audio) {
-      audio.pause();
-      audio.currentTime = 0;
-      audio.volume = 0;
-      audio.play().catch(error => {
-          console.log("Error al reproducir el audio:", error);
-      });
-  }
 
     document.getElementById("Introduccion").style.animationPlayState = "running";
     document.getElementById("saltar").style.animationPlayState = "running";
