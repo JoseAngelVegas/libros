@@ -898,15 +898,8 @@ botonCerrar.addEventListener('click', function() {
         });
     });
 
-       const audio = document.getElementById("audioCerrar");
-    if (audio) {
-        audio.pause();
-        audio.currentTime = 0;
-        audio.play().catch(error => {
-            console.log("Error al reproducir el audio:", error);
-        });
-    }
-});
+}
+                     
 
 
 function saltarIntroduccion() {
@@ -1146,8 +1139,8 @@ document.getElementById("reset").style.visibility = "hidden";
         });
     }
 
-   
 
+   
                        document.getElementById("Enviado").style.fontSize = "0px";
         
        document.getElementById("EspacioCreditos").style.gap = "0px";
