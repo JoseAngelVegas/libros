@@ -772,32 +772,61 @@ fetch(scriptUrl, {method: 'POST', body: new FormData(form)})
 
  <script>
 
-window.addEventListener('load', function() {
-    const loader = document.getElementById('loader-wrapper');
-    const introduccion = document.getElementById('Introduccion');
+window.addEventListener('DOMContentLoaded', function() {
+        const loader = document.getElementById('loader-wrapper');
+        const introduccion = document.getElementById('Introduccion');
+        
+        const mediaElements = document.querySelectorAll('video, audio');
+        let mediaLoadedCount = 0;
+        const totalMedia = mediaElements.length;
 
-    if (introduccion) {
-        introduccion.play().catch(error => {
-            console.log("El navegador bloqueó la reproducción automática en segundo plano:", error);
-        });
+        function ocultarLoaderYReproducir() {
+            if (loader && !loader.classList.contains('loader-hidden')) {
+                loader.classList.add('loader-hidden');
 
-       introduccion.addEventListener('ended', function() {
-            if (typeof saltarIntroduccion === 'function') {
-                saltarIntroduccion();
+                   setTimeout(() => { loader.style.display = 'none'; }, 500);
+
+                if (introduccion) {
+                    introduccion.play().catch(error => {
+                        console.log("El navegador bloqueó la reproducción automática:", error);
+                    });
+                }
             }
-        });
+        }
 
-      
-        setTimeout(() => {
-            loader.classList.add('loader-hidden');
+        const safetyTimeout = setTimeout(() => {
+            ocultarLoaderYReproducir();
+        }, 5000);
 
-            setTimeout(() => {
-                loader.remove();
-            }, 800);
+        if (totalMedia === 0) {
+            clearTimeout(safetyTimeout);
+            ocultarLoaderYReproducir();
+        } else {
+            mediaElements.forEach(media => {
+                media.addEventListener('canplaythrough', function() {
+                    mediaLoadedCount++;
+                    if (mediaLoadedCount >= totalMedia) {
+                        clearTimeout(safetyTimeout);
+                        ocultarLoaderYReproducir();
+                    }
+                }, { once: true });
 
-        }, 1000);
-    }
-});
+                if (media.readyState >= 3) {
+                    media.dispatchEvent(new Event('canplaythrough'));
+                }
+            });
+        }
+
+        if (introduccion) {
+            introduccion.addEventListener('ended', function() {
+                if (typeof saltarIntroduccion === 'function') {
+                    saltarIntroduccion();
+                }
+            });
+        }
+    });
+
+        
         
     </script>
 
