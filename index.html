@@ -450,7 +450,7 @@ width: 25%;
 
 <audio id="audioAbrir" src="SonidoDeAbrir.wav" preload="auto"></audio>
 
-<audio id="audioCerrar" src="SonidoDeCerrar.wav" preload="auto"></audio>
+<audio id="audioDeCerrar" src="SonidoDeCerrar.wav" preload="auto"></audio>
 
 
 
@@ -1128,7 +1128,7 @@ document.getElementById("reset").style.visibility = "hidden";
        
  function cerrar() {
 
-     const audio = document.getElementById("audioAbrir");
+     const audio = document.getElementById("audioDeCerrar");
     
     if (audio) {
         audio.pause();
