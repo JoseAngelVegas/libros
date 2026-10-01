@@ -897,6 +897,15 @@ botonCerrar.addEventListener('click', function() {
             p.classList.add('esconder');
         });
     });
+
+       const audio = document.getElementById("audioCerrar");
+    if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.play().catch(error => {
+            console.log("Error al reproducir el audio:", error);
+        });
+    }
 });
 
 
@@ -1132,15 +1141,7 @@ document.getElementById("reset").style.visibility = "hidden";
        
  function cerrar() {
 
-           const audio = document.getElementById("audioCerrar");
-    
-    if (audio) {
-        audio.pause();
-        audio.currentTime = 0;
-        audio.play().catch(error => {
-            console.log("Error al reproducir el audio:", error);
-        });
-    }
+   
 
                        document.getElementById("Enviado").style.fontSize = "0px";
         
