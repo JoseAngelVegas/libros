@@ -911,6 +911,17 @@ botonCerrar.addEventListener('click', function() {
 
 function saltarIntroduccion() {
 
+ const audio = document.getElementById("audioCerrar");
+    
+  if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+      audio.volume = 0;
+      audio.play().catch(error => {
+          console.log("Error al reproducir el audio:", error);
+      });
+  }
+
 
     document.getElementById("Introduccion").style.animationPlayState = "running";
     document.getElementById("saltar").style.animationPlayState = "running";
@@ -928,14 +939,6 @@ document.getElementById("TerminosYCondiciones").style.animation = "CositasMas";
          document.getElementById("PoliticaDePrivacidad").style.animation = "CositasMas";
        document.getElementById("PoliticaDePrivacidad").style.animationPlayState = "running";
         document.getElementById("PoliticaDePrivacidad").style.animationFillMode = "both";
-
-const audioOlas = document.getElementById('audioOlas');
-    if (audioOlas) {
-        audioOlas.play().catch(error => {
-            console.log("El navegador requiere interacción para reproducir el audio de las olas:", error);
-        });
-    }
-}
 
 
        function mentePrint() {
