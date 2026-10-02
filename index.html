@@ -790,6 +790,7 @@ window.addEventListener('DOMContentLoaded', function() {
     const mediaElements = document.querySelectorAll('video, audio');
     let totalMedia = mediaElements.length;
     let loadedCount = 0;
+    let transitionStarted = false;
 
     function actualizarProgreso() {
         if (totalMedia === 0) {
@@ -798,30 +799,36 @@ window.addEventListener('DOMContentLoaded', function() {
         }
         
         let porcentaje = Math.round((loadedCount / totalMedia) * 100);
-        
         if (txtPorcentaje) {
             txtPorcentaje.innerText = porcentaje + "%";
         }
     }
 
-    function ocultarLoaderYReproducir() {
-        if (loader && !loader.classList.contains('loader-hidden')) {
-            if (txtPorcentaje) txtPorcentaje.innerText = "100%";
-            
-            loader.classList.add('loader-hidden');
-            setTimeout(() => { loader.style.display = 'none'; }, 500);
+    function iniciarReproduccionYQuitarLoader() {
+        if (transitionStarted) return;
+        transitionStarted = true;
 
-            if (introduccion) {
-                introduccion.play().catch(error => {
-                    console.log("El navegador bloqueó la reproducción automática:", error);
-                });
-            }
+        if (txtPorcentaje) txtPorcentaje.innerText = "100%";
+
+        if (introduccion) {
+            introduccion.play().catch(error => {
+                console.log("El navegador bloqueó la reproducción automática:", error);
+            });
         }
+
+        setTimeout(() => {
+            if (loader && !loader.classList.contains('loader-hidden')) {
+                loader.classList.add('loader-hidden');
+                setTimeout(() => { 
+                    loader.style.display = 'none'; 
+                }, 500);
+            }
+        }, 1500); 
     }
 
     if (totalMedia === 0) {
         actualizarProgreso();
-        ocultarLoaderYReproducir();
+        iniciarReproduccionYQuitarLoader();
         return;
     }
 
@@ -839,13 +846,13 @@ window.addEventListener('DOMContentLoaded', function() {
                 .then(blob => {
                     const blobUrl = URL.createObjectURL(blob);
                     media.src = blobUrl;
-                    media.load(); 
+                    media.load();
                     
                     loadedCount++;
                     actualizarProgreso();
                     
                     if (loadedCount >= totalMedia) {
-                        ocultarLoaderYReproducir();
+                        iniciarReproduccionYQuitarLoader();
                     }
                 })
                 .catch(err => {
@@ -854,20 +861,20 @@ window.addEventListener('DOMContentLoaded', function() {
                     actualizarProgreso();
                     
                     if (loadedCount >= totalMedia) {
-                        ocultarLoaderYReproducir();
+                        iniciarReproduccionYQuitarLoader();
                     }
                 });
         } else {
             loadedCount++;
             actualizarProgreso();
             if (loadedCount >= totalMedia) {
-                ocultarLoaderYReproducir();
+                iniciarReproduccionYQuitarLoader();
             }
         }
     });
 
     const safetyTimeout = setTimeout(() => {
-        ocultarLoaderYReproducir();
+        iniciarReproduccionYQuitarLoader();
     }, 15000);
 
     if (introduccion) {
@@ -878,32 +885,6 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-</script>
-        
-<script>
-const audioMusica = document.getElementById('musicaFondo');
-const elementoPrueba = document.getElementById('PruebaSonido');
-
-if (elementoPrueba) {
-    const observerOptions = {
-        root: null,
-        rootMargin: "-49% 0px -49% 0px",
-        threshold: 0
-    };
-
-    const soundObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                audioMusica.currentTime = 0;
-                audioMusica.play().catch(e => {
-                    console.log("El navegador bloqueó el autoplay del audio hasta que el usuario interactúe con la página.");
-                });
-            }
-        });
-    }, observerOptions);
-
-    soundObserver.observe(elementoPrueba);
-}
 </script>
        
 <script>
