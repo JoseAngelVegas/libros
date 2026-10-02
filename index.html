@@ -13,7 +13,29 @@ animation-name: videoDeFondo;
 animation-duration: 5s;
       }
       
-       
+#porcentaje-carga {
+    font-family: sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    color: black;
+    margin-top: 15px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+#loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
    
       
 
@@ -430,8 +452,9 @@ width: 25%;
 <body>
 
 <div id="loader-wrapper">
-        <div class="spinner"></div>
-    </div>
+    <div class="spinner"></div>
+    <div id="porcentaje-carga">0%</div>
+</div>
 
 <audio id="audioOlas" src="Olas.mp3" loop preload="auto"></audio>
 
@@ -761,16 +784,34 @@ fetch(scriptUrl, {method: 'POST', body: new FormData(form)})
 
 <script>
        
+<script>
+       
 window.addEventListener('DOMContentLoaded', function() {
     const loader = document.getElementById('loader-wrapper');
     const introduccion = document.getElementById('Introduccion');
+    const txtPorcentaje = document.getElementById('porcentaje-carga');
     
     const mediaElements = document.querySelectorAll('video, audio');
     let totalMedia = mediaElements.length;
     let loadedCount = 0;
 
+    function actualizarProgreso() {
+        if (totalMedia === 0) {
+            if (txtPorcentaje) txtPorcentaje.innerText = "100%";
+            return;
+        }
+        
+        let porcentaje = Math.round((loadedCount / totalMedia) * 100);
+        
+        if (txtPorcentaje) {
+            txtPorcentaje.innerText = porcentaje + "%";
+        }
+    }
+
     function ocultarLoaderYReproducir() {
         if (loader && !loader.classList.contains('loader-hidden')) {
+            if (txtPorcentaje) txtPorcentaje.innerText = "100%";
+            
             loader.classList.add('loader-hidden');
             setTimeout(() => { loader.style.display = 'none'; }, 500);
 
@@ -783,12 +824,14 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
     if (totalMedia === 0) {
+        actualizarProgreso();
         ocultarLoaderYReproducir();
         return;
     }
 
+    actualizarProgreso();
+
     mediaElements.forEach(media => {
-           
         let src = media.src;
         if (!src && media.querySelector('source')) {
             src = media.querySelector('source').src;
@@ -798,26 +841,29 @@ window.addEventListener('DOMContentLoaded', function() {
             fetch(src)
                 .then(response => response.blob())
                 .then(blob => {
-                       
                     const blobUrl = URL.createObjectURL(blob);
                     media.src = blobUrl;
-                    media.load();
+                    media.load(); 
                     
                     loadedCount++;
+                    actualizarProgreso();
+                    
                     if (loadedCount >= totalMedia) {
                         ocultarLoaderYReproducir();
                     }
                 })
                 .catch(err => {
                     console.error("Error al precargar recurso:", src, err);
-
-                       loadedCount++;
+                    loadedCount++;
+                    actualizarProgreso();
+                    
                     if (loadedCount >= totalMedia) {
                         ocultarLoaderYReproducir();
                     }
                 });
         } else {
             loadedCount++;
+            actualizarProgreso();
             if (loadedCount >= totalMedia) {
                 ocultarLoaderYReproducir();
             }
@@ -836,6 +882,7 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+</script>
         
 </script>
         
