@@ -772,64 +772,86 @@ fetch(scriptUrl, {method: 'POST', body: new FormData(form)})
 
  <script>
 
+<script>
+       
 window.addEventListener('DOMContentLoaded', function() {
-        const loader = document.getElementById('loader-wrapper');
-        const introduccion = document.getElementById('Introduccion');
-        
-        const mediaElements = document.querySelectorAll('video, audio');
-        let mediaLoadedCount = 0;
-        const totalMedia = mediaElements.length;
+    const loader = document.getElementById('loader-wrapper');
+    const introduccion = document.getElementById('Introduccion');
+    
+    const mediaElements = document.querySelectorAll('video, audio');
+    let totalMedia = mediaElements.length;
+    let loadedCount = 0;
 
-        function ocultarLoaderYReproducir() {
-            if (loader && !loader.classList.contains('loader-hidden')) {
-                loader.classList.add('loader-hidden');
+    function ocultarLoaderYReproducir() {
+        if (loader && !loader.classList.contains('loader-hidden')) {
+            loader.classList.add('loader-hidden');
+            setTimeout(() => { loader.style.display = 'none'; }, 500);
 
-                   setTimeout(() => { loader.style.display = 'none'; }, 500);
-
-                if (introduccion) {
-                    introduccion.play().catch(error => {
-                        console.log("El navegador bloqueó la reproducción automática:", error);
-                    });
-                }
+            if (introduccion) {
+                introduccion.play().catch(error => {
+                    console.log("El navegador bloqueó la reproducción automática:", error);
+                });
             }
         }
+    }
 
-        const safetyTimeout = setTimeout(() => {
-            ocultarLoaderYReproducir();
-        }, 5000);
+    if (totalMedia === 0) {
+        ocultarLoaderYReproducir();
+        return;
+    }
 
-        if (totalMedia === 0) {
-            clearTimeout(safetyTimeout);
-            ocultarLoaderYReproducir();
-        } else {
-            mediaElements.forEach(media => {
-                media.addEventListener('canplaythrough', function() {
-                    mediaLoadedCount++;
-                    if (mediaLoadedCount >= totalMedia) {
-                        clearTimeout(safetyTimeout);
-                        ocultarLoaderYReproducir();
-                    }
-                }, { once: true });
-
-                if (media.readyState >= 3) {
-                    media.dispatchEvent(new Event('canplaythrough'));
-                }
-            });
+    mediaElements.forEach(media => {
+           
+        let src = media.src;
+        if (!src && media.querySelector('source')) {
+            src = media.querySelector('source').src;
         }
 
-        if (introduccion) {
-            introduccion.addEventListener('ended', function() {
-                if (typeof saltarIntroduccion === 'function') {
-                    saltarIntroduccion();
-                }
-            });
+        if (src) {
+            fetch(src)
+                .then(response => response.blob())
+                .then(blob => {
+                       
+                    const blobUrl = URL.createObjectURL(blob);
+                    media.src = blobUrl;
+                    media.load();
+                    
+                    loadedCount++;
+                    if (loadedCount >= totalMedia) {
+                        ocultarLoaderYReproducir();
+                    }
+                })
+                .catch(err => {
+                    console.error("Error al precargar recurso:", src, err);
+
+                       loadedCount++;
+                    if (loadedCount >= totalMedia) {
+                        ocultarLoaderYReproducir();
+                    }
+                });
+        } else {
+            loadedCount++;
+            if (loadedCount >= totalMedia) {
+                ocultarLoaderYReproducir();
+            }
         }
     });
 
-        
-        
-    </script>
+    const safetyTimeout = setTimeout(() => {
+        ocultarLoaderYReproducir();
+    }, 15000);
 
+    if (introduccion) {
+        introduccion.addEventListener('ended', function() {
+            if (typeof saltarIntroduccion === 'function') {
+                saltarIntroduccion();
+            }
+        });
+    }
+});
+        
+</script>
+        
 <script>
 const audioMusica = document.getElementById('musicaFondo');
 const elementoPrueba = document.getElementById('PruebaSonido');
