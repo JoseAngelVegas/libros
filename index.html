@@ -14,9 +14,7 @@ animation-duration: 5s;
       }
       
 #porcentaje-carga {
-    font-family: sans-serif;
     font-size: 22px;
-    font-weight: bold;
     color: black;
     margin-top: 15px;
     text-align: center;
@@ -782,109 +780,20 @@ fetch(scriptUrl, {method: 'POST', body: new FormData(form)})
        
 <script>
        
-window.addEventListener('DOMContentLoaded', function() {
-    const loader = document.getElementById('loader-wrapper');
-    const introduccion = document.getElementById('Introduccion');
-    const txtPorcentaje = document.getElementById('porcentaje-carga');
-    
-    const mediaElements = document.querySelectorAll('video, audio');
-    let totalMedia = mediaElements.length;
-    let loadedCount = 0;
-    let transitionStarted = false;
+window.addEventListener('DOMContentLoaded', function () {
 
-    function actualizarProgreso() {
-        if (totalMedia === 0) {
-            if (txtPorcentaje) txtPorcentaje.innerText = "100%";
-            return;
-        }
-        
-        let porcentaje = Math.round((loadedCount / totalMedia) * 100);
-        if (txtPorcentaje) {
-            txtPorcentaje.innerText = porcentaje + "%";
-        }
-    }
+       const loader = document.getElementById('leader-wrapper');
+       const introduccion = document.getElementById('Introduccion');
+       const textoPorcentaje = document.getElementById('porcentaje-carga');
 
-    function iniciarReproduccionYQuitarLoader() {
-        if (transitionStarted) return;
-        transitionStarted = true;
+       const mediaElements = document.querySelectorAll('video, audio');
+       let totalMedia = mediaElements.lenght;
+       let loadedCount = 0;
+       let transitionStarted = false;
 
-        if (txtPorcentaje) txtPorcentaje.innerText = "100%";
-
-        if (introduccion) {
-            introduccion.play().catch(error => {
-                console.log("El navegador bloqueó la reproducción automática:", error);
-            });
-        }
-
-        setTimeout(() => {
-            if (loader && !loader.classList.contains('loader-hidden')) {
-                loader.classList.add('loader-hidden');
-                setTimeout(() => { 
-                    loader.style.display = 'none'; 
-                }, 500);
-            }
-        }, 1500); 
-    }
-
-    if (totalMedia === 0) {
-        actualizarProgreso();
-        iniciarReproduccionYQuitarLoader();
-        return;
-    }
-
-    actualizarProgreso();
-
-    mediaElements.forEach(media => {
-        let src = media.src;
-        if (!src && media.querySelector('source')) {
-            src = media.querySelector('source').src;
-        }
-
-        if (src) {
-            fetch(src)
-                .then(response => response.blob())
-                .then(blob => {
-                    const blobUrl = URL.createObjectURL(blob);
-                    media.src = blobUrl;
-                    media.load();
-                    
-                    loadedCount++;
-                    actualizarProgreso();
-                    
-                    if (loadedCount >= totalMedia) {
-                        iniciarReproduccionYQuitarLoader();
-                    }
-                })
-                .catch(err => {
-                    console.error("Error al precargar recurso:", src, err);
-                    loadedCount++;
-                    actualizarProgreso();
-                    
-                    if (loadedCount >= totalMedia) {
-                        iniciarReproduccionYQuitarLoader();
-                    }
-                });
-        } else {
-            loadedCount++;
-            actualizarProgreso();
-            if (loadedCount >= totalMedia) {
-                iniciarReproduccionYQuitarLoader();
-            }
-        }
-    });
-
-    const safetyTimeout = setTimeout(() => {
-        iniciarReproduccionYQuitarLoader();
-    }, 15000);
-
-    if (introduccion) {
-        introduccion.addEventListener('ended', function() {
-            if (typeof saltarIntroduccion === 'function') {
-                saltarIntroduccion();
-            }
-        });
-    }
-});
+       function actualizarProgreso () {
+              if (totalMedia === 0) {
+                     if (textoPorcentaje) textoPorcentaje.innerText = "100%";
 </script>
        
 <script>
