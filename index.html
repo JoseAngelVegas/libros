@@ -794,6 +794,36 @@ window.addEventListener('DOMContentLoaded', function () {
        function actualizarProgreso () {
               if (totalMedia === 0) {
                      if (textoPorcentaje) textoPorcentaje.innerText = "100%";
+                     return;
+              }
+
+              let porcentaje = Math.round((loadedCount / totalMedia) * 100);
+              if (textoPorcentaje) {
+                     textoPorcentaje.innerText = porcentaje + "%";
+              }
+
+              function iniciarReproduccionYQuitarLoader() {
+                     if (transitionStarted) return;
+                     transitionStarted = true;
+
+                     if (textoPorcentaje) textoPorcentaje.innerText = "100%";
+
+                     if (introduccion) {
+                            intruduccion.play().cath(error => {
+                                   console.log("Error:", error);
+                            });
+                     }
+
+                     setTimeout(() => {
+                            if (loeader && !loader.classListo.contains('loader-hidden')) {
+                                   loader.classListo.add('loader-hidden');
+                                   setTimeout(() => {
+                                          loader.style.display = 'none'
+                                   }, 500);
+                            }
+                     }, 1500);
+
+              }
 </script>
        
 <script>
