@@ -780,114 +780,75 @@ fetch(scriptUrl, {method: 'POST', body: new FormData(form)})
        
 <script>
        
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('DOMContentLoaded', () => {
+    const loader = document.getElementById('leader-wrapper');
+    const introduccion = document.getElementById('Introduccion');
+    const txtPorcentaje = document.getElementById('porcentaje-carga');
+    const mediaElements = document.querySelectorAll('video, audio');
+    
+    const totalMedia = mediaElements.length;
+    let loadedCount = 0;
+    let transitionStarted = false;
 
-       const loader = document.getElementById('loader-wrapper');
-       const introduccion = document.getElementById('Introduccion');
-       const textoPorcentaje = document.getElementById('porcentaje-carga');
+    const actualizarProgreso = () => {
+        if (totalMedia === 0) return;
+        if (txtPorcentaje) txtPorcentaje.innerText = Math.round((loadedCount / totalMedia) * 100) + "%";
+    };
 
-       const mediaElements = document.querySelectorAll('video, audio');
-       let totalMedia = mediaElements.length;
-       let loadedCount = 0;
-       let transitionStarted = false;
+    const iniciarReproduccionYQuitarLoader = () => {
+        if (transitionStarted) return;
+        transitionStarted = true;
+        clearTimeout(safetyTimeout);
 
-       function actualizarProgreso () {
-              if (totalMedia === 0) {
-                     if (textoPorcentaje) textoPorcentaje.innerText = "100%";
-                     return;
-              }
+        if (txtPorcentaje) txtPorcentaje.innerText = "100%";
+        if (introduccion) introduccion.play().catch(() => {});
 
-              let porcentaje = Math.round((loadedCount / totalMedia) * 100);
-              if (textoPorcentaje) {
-                     textoPorcentaje.innerText = porcentaje + "%";
-              }
+        setTimeout(() => {
+            if (loader) {
+                loader.classList.add('loader-hidden');
+                setTimeout(() => loader.style.display = 'none', 500);
+            }
+        }, 1500);
+    };
 
-              function iniciarReproduccionYQuitarLoader() {
-                     if (transitionStarted) return;
-                     transitionStarted = true;
+    const safetyTimeout = setTimeout(iniciarReproduccionYQuitarLoader, 15000);
 
-                     if (textoPorcentaje) textoPorcentaje.innerText = "100%";
+    const registrarCarga = () => {
+        loadedCount++;
+        actualizarProgreso();
+        if (loadedCount >= totalMedia) iniciarReproduccionYQuitarLoader();
+    };
 
-                     if (introduccion) {
-                            introduccion.play().catch(error => {
-                                   console.log("Error:", error);
-                            });
-                     }
+    if (totalMedia === 0) {
+        actualizarProgreso();
+        iniciarReproduccionYQuitarLoader();
+        return;
+    }
 
-                     setTimeout(() => {
-                            if (loader && !loader.classList.contains('loader-hidden')) {
-                                   loader.classList.add('loader-hidden');
-                                   setTimeout(() => {
-                                          loader.style.display = 'none'
-                                   }, 500);
-                            }
-                     }, 1500);
+    actualizarProgreso();
 
-              }
+    mediaElements.forEach(media => {
+        let src = media.src || media.querySelector('source')?.src;
+        if (src) {
+            fetch(src)
+                .then(res => res.blob())
+                .then(blob => {
+                    media.src = URL.createObjectURL(blob);
+                    media.load();
+                    registrarCarga();
+                })
+                .catch(registrarCarga);
+        } else {
+            registrarCarga();
+        }
+    });
 
-              if (totalMedia === 0) {
-                     actualizarProgreso();
-                     iniciarReproduccionYQuitarLoader();
-                     return;
-              }
-
-              actualizarProgreso();
-              mediaElements.forEach(media => {                            
-              let src = media.src;
-                     if (!src && media.querySelector('source')) {
-                            src = media.querySelector('source').src;
-                     }
-                     
-              if (src) {
-
-                     fetch(src)
-                     .then(response => response.blob())
-                     .then(blob=> {
-                            const blobUrl = URL.createObjectURL(blob);
-                            media.src = blobUrl;
-                            media.load()
-
-                     loadedCount++;
-                            actualizarProgreso();
-
-                            if (loadedCount >= totalMedia) {
-                                   iniciarReproduccionYQuitarLoader();
-                            }
-                     })
-                     .catch(err => {
-                            console.error("Hubo un error:", src, err);
-                            loadedCount++;
-                            actualizarProgreso();
-
-                     if (loadedCount >= totalMedia) {
-                            iniciarReproduccionYQuitarLoader();
-                     }
-                     });
-
-              } else {
-                     loadedCount++;
-                     actualizarProgreso();
-                     if (loadedCount >= totalMedia) {
-                            iniciarReproduccionYQuitarLoader();
-                     }
-              }
-
-              });
-
-       const safetyTimeout = setTimeout(() => {
-              iniciarReproduccionYQuitarLoader();
-       }, 15000);
-
-              if (introduccion) {
-                     introduccion.addEventListener('ended', function() {
-                            if (typeof saltarIntroduccion === 'function') {
-                                   saltarIntroduccion();
-                            }
-                     });
-              }
-       });
-
-       
+    if (introduccion) {
+        introduccion.addEventListener('ended', () => {
+            if (typeof saltarIntroduccion === 'function') saltarIntroduccion();
+        });
+    }
+});
               
 </script>
        
