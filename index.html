@@ -809,7 +809,7 @@ window.addEventListener('DOMContentLoaded', function () {
                      if (textoPorcentaje) textoPorcentaje.innerText = "100%";
 
                      if (introduccion) {
-                            introduccion.play().cath(error => {
+                            introduccion.play().catch(error => {
                                    console.log("Error:", error);
                             });
                      }
@@ -859,7 +859,7 @@ window.addEventListener('DOMContentLoaded', function () {
                             actualizarProgreso();
 
                      if (loadedCount >= totalMedia) {
-                            inicarReproduccionYQuitarLoader();
+                            iniciarReproduccionYQuitarLoader();
                      }
                      });
 
@@ -867,7 +867,7 @@ window.addEventListener('DOMContentLoaded', function () {
                      loadedCount++;
                      actualizarProgreso();
                      if (loadedCount >= totalMedia) {
-                            inicarReproduccionYQuitarLoader();
+                            iniciarReproduccionYQuitarLoader();
                      }
               }
 
