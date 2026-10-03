@@ -787,7 +787,7 @@ window.addEventListener('DOMContentLoaded', function () {
        const textoPorcentaje = document.getElementById('porcentaje-carga');
 
        const mediaElements = document.querySelectorAll('video, audio');
-       let totalMedia = mediaElements.lenght;
+       let totalMedia = mediaElements.length;
        let loadedCount = 0;
        let transitionStarted = false;
 
@@ -816,7 +816,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
                      setTimeout(() => {
                             if (loeader && !loader.classListo.contains('loader-hidden')) {
-                                   loader.classListo.add('loader-hidden');
+                                   loader.classList.add('loader-hidden');
                                    setTimeout(() => {
                                           loader.style.display = 'none'
                                    }, 500);
@@ -843,7 +843,7 @@ window.addEventListener('DOMContentLoaded', function () {
                      fetch(src)
                      .then(response => response.blob())
                      .then(blob=> {
-                            const blobUrl = Url.createObjectUrl(Blob);
+                            const blobUrl = URL.createObjectURL(blob);
                             media.src = blobUrl;
 
                      loadedCount++;
@@ -854,7 +854,7 @@ window.addEventListener('DOMContentLoaded', function () {
                             }
                      })
                      .catch(err => {
-                            consola.error("Hubo un error:", src, err);
+                            console.error("Hubo un error:", src, err);
                             loadedCount++;
                             actulizarProgreso();
 
