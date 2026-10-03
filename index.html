@@ -824,6 +824,70 @@ window.addEventListener('DOMContentLoaded', function () {
                      }, 1500);
 
               }
+
+              if (totalMedia === 0) {
+                     actualizarProgreso();
+                     iniciarReproduccionYQuitarLoader();
+                     return;
+              }
+
+              actualizarProgreso();
+              mediaElements.forEach(media => {                            
+              let src = media.src;
+                     if (!src && media.querySelector('source')) {
+                            src = media.querySelector('source').src;
+                     }
+                     
+              if (src) {
+
+                     fetch(src)
+                     .then(response => response.blob())
+                     .then(blob=> {
+                            const blobUrl = Url.createObjectUrl(Blob);
+                            media.src = blobUrl;
+
+                     loadedCount++;
+                            actualizarProgreso();
+
+                            if (loadedCount >= totalMedia {
+                                   inicarReproduccionYQuitarLoader();
+                            }
+                     })
+                     .catch(err => {
+                            consola.error("Hubo un error:", src, err);
+                            loadedCount++;
+                            actulizarProgreso();
+
+                     if (loadedCount >= totalMedia) {
+                            inicarReproduccionYQuitarLoader();
+                     }
+                     });
+
+              } else {
+                     loadedCount++;
+                     actualizarProgreso();
+                     if (loadedCount >= totalMedia) {
+                            inicarReproduccionYQuitarLoader();
+                     }
+              }
+
+              });
+
+       const safetyTimeout = setTimeout(() => {
+              iniciarReproduccionYQuitarLoader();
+       }, 15000);
+
+              if (introduccion) {
+                     introduccion.addEventListener('ended', function() {
+                            if (typeof saltarIntroduccion === 'function') {
+                                   saltarIntroduccion();
+                            }
+                     });
+              }
+       });
+
+       
+              
 </script>
        
 <script>
