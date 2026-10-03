@@ -845,6 +845,7 @@ window.addEventListener('DOMContentLoaded', function () {
                      .then(blob=> {
                             const blobUrl = URL.createObjectURL(blob);
                             media.src = blobUrl;
+                            media.load()
 
                      loadedCount++;
                             actualizarProgreso();
