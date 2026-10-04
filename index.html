@@ -857,6 +857,7 @@ window.addEventListener('DOMContentLoaded', () => {
        
 <script>
 
+
 const boton1 = document.querySelector('#Episodio1');
 const boton2 = document.querySelector('#Episodio2');
 const boton3 = document.querySelector('#Episodio3');
@@ -866,8 +867,34 @@ const paginas1 = document.querySelectorAll('.MenteDePrintPaginas');
 const paginas2 = document.querySelectorAll('.MenteDePrintPaginas2');
 const paginas3 = document.querySelectorAll('.MenteDePrintPaginas3');
 
+   const borde = ["5px solid black"];
+
+   const radiosTrazos = ["0px 10px 50px 50px / 20px 80px 12px 500px", "500px 0px 800px 150px / 200px 50px 120px 100px", "70px 100px 150px 840px / 20px 80px 12px 500px", "500px 0px 800px 150px / 200px 500px 140px 150px", "0px 10px 50px 50px / 20px 80px 12px 500px", "500px 0px 800px 150px / 200px 50px 120px 100px", "70px 100px 150px 840px / 20px 80px 12px 500px"];
+       
+    function obtenerAleatorio(array) {
+        const indice = Math.floor(Math.random() * array.length);
+        return array[indice];
+    }
+
+   boton1.addEventListener("click", () => {
+        paginas1.forEach(pagina1 => {
+        
+            pagina1.style.border = obtenerAleatorio(borde);
+            pagina1.style.borderRadius = obtenerAleatorio(radiosTrazos);
+        });
+    });
+
 const botonBiologia = document.querySelector('#Leer1');
 const paginasBiologia = document.querySelectorAll('.Biologia');
+const border = ["3px solid black"];
+
+       
+
+            caja.style.border = obtenerAleatorio(coloresFondo);
+            caja.style.borderRadius = obtenerAleatorio(radiosTrazos);
+        });
+    });
+       
 
        boton1.addEventListener('click', function() {
     paginas1.forEach(p => p.classList.add('mostrar'));
@@ -1086,6 +1113,7 @@ document.getElementById("reset").style.visibility = "hidden";
             console.log("Error al reproducir el audio:", error);
         });
     }
+
             
   document.getElementById("Espacio1").style.gap = "20px";
   
