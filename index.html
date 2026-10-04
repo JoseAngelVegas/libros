@@ -884,6 +884,23 @@ const paginas3 = document.querySelectorAll('.MenteDePrintPaginas3');
         });
     });
 
+
+   boton2.addEventListener("click", () => {
+        paginas2.forEach(pagina2 => {
+        
+            pagina2.style.border = obtenerAleatorio(borde);
+            pagina2.style.borderRadius = obtenerAleatorio(radiosTrazos);
+        });
+    });
+
+ boton3.addEventListener("click", () => {
+        paginas3.forEach(pagina3 => {
+        
+            pagina3.style.border = obtenerAleatorio(borde);
+            pagina3.style.borderRadius = obtenerAleatorio(radiosTrazos);
+        });
+    });
+
 const botonBiologia = document.querySelector('#Leer1');
 const paginasBiologia = document.querySelectorAll('.Biologia');
 
