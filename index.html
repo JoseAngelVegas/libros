@@ -905,6 +905,15 @@ const botonBiologia = document.querySelector('#Leer1');
 const paginasBiologia = document.querySelectorAll('.Biologia');
 
 
+ botonBiologia.addEventListener("click", () => {
+        paginasBiologia.forEach(paginaBiologia => {
+        
+            paginaBiologia.style.border = obtenerAleatorio(borde);
+            paginaBiologia.style.borderRadius = obtenerAleatorio(radiosTrazos);
+        });
+    });
+
+
        boton1.addEventListener('click', function() {
     paginas1.forEach(p => p.classList.add('mostrar'));
     paginas1.forEach(p => p.classList.remove('esconder'));
