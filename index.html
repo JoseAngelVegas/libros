@@ -139,6 +139,8 @@ object-fit: cover;
   animation: SaltarBoton 0.2s;
   animation-play-state: paused;
   animation-fill-mode: both;
+visibility: hidden;
+    opacity: 0;   
 }
 
   
@@ -663,6 +665,7 @@ form.addEventListener('submit', e => {
 </script>
 
 <script>
+       
 window.addEventListener('DOMContentLoaded', () => {
     const loader = document.getElementById('loader-wrapper');
     const introduccion = document.getElementById('Introduccion');
@@ -722,6 +725,8 @@ window.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
+       
+
     actualizarProgreso();
 
     mediaElements.forEach(media => {
@@ -746,6 +751,7 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+       
 </script>
 
 <script>
@@ -848,27 +854,16 @@ function reproducirIntroduccion() {
         introVideo.play().catch(e => console.log("Error al reproducir video:", e));
     }
 
-    const btnSaltar = document.getElementById("saltar");
-    if (btnSaltar) {
-        btnSaltar.style.animationPlayState = "running";
-    }
+    // Esperamos 1.5 segundos (1500 ms) para mostrar y activar el botón "Saltar"
+    setTimeout(() => {
+        const btnSaltar = document.getElementById("saltar");
+        if (btnSaltar) {
+            btnSaltar.style.visibility = "visible";
+            btnSaltar.style.opacity = "1";
+            btnSaltar.style.animationPlayState = "running";
+        }
+    }, 1500);
 }
-
-function saltarIntroduccion() {
-    const contenedorOpciones = document.getElementById('EspacioOpcionesIniciales');
-    if (contenedorOpciones) {
-        contenedorOpciones.style.display = 'none';
-    }
-
-    const audio = document.getElementById("audioOlas");
-    if (audio) {
-        audio.pause();
-        audio.currentTime = 0;
-        audio.volume = 0.25;
-        audio.play().catch(error => {
-            console.log("Error al reproducir el audio:", error);
-        });
-    }
 
     document.getElementById("Introduccion").style.animationPlayState = "running";
     document.getElementById("saltar").style.animationPlayState = "running";
