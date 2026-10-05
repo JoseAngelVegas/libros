@@ -795,36 +795,30 @@ window.addEventListener('DOMContentLoaded', () => {
         if (txtPorcentaje) txtPorcentaje.innerText = Math.round((loadedCount / totalMedia) * 100) + "%";
     };
 
-    const iniciarReproduccionYQuitarLoader = () => {
+    const quitarLoader = () => {
         if (transitionStarted) return;
         transitionStarted = true;
         clearTimeout(safetyTimeout);
 
         if (txtPorcentaje) txtPorcentaje.innerText = "100%";
 
-        if (introduccion) {
-            introduccion.play().catch(() => {});
+        if (loader) {
+            loader.classList.add('loader-hidden');
+            setTimeout(() => loader.style.display = 'none', 500);
         }
-
-        setTimeout(() => {
-            if (loader) {
-                loader.classList.add('loader-hidden');
-                setTimeout(() => loader.style.display = 'none', 500);
-            }
-        }, 1500);
     };
 
-    const safetyTimeout = setTimeout(iniciarReproduccionYQuitarLoader, 15000);
+    const safetyTimeout = setTimeout(quitarLoader, 15000);
 
     const registrarCarga = () => {
         loadedCount++;
         actualizarProgreso();
-        if (loadedCount >= totalMedia) iniciarReproduccionYQuitarLoader();
+        if (loadedCount >= totalMedia) quitarLoader();
     };
 
     if (totalMedia === 0) {
         actualizarProgreso();
-        iniciarReproduccionYQuitarLoader();
+        quitarLoader();
         return;
     }
 
