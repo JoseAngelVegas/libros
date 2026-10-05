@@ -431,6 +431,8 @@ width: 25%;
     <div id="porcentaje-carga">0%</div>
 </div>
 
+<!-- Hay que cambiar lo de los videos, sin lugar a dudas... -->
+
 <div id="EspacioOpcionesIniciales" style="display: none; text-align: center; position: relative; z-index: 50; margin: 20vh auto 0 auto;">
     <button class="ElegirEpisodio" id="BotonVerIntro" onclick="reproducirIntroduccion()" style="visibility: hidden; font-size: 0px;">Ver Introducción</button>
     <button class="ElegirEpisodio" id="BotonEmpezarDirecto" onclick="saltarIntroduccion()" style="visibility: hidden; font-size: 0px;">Empezar</button>
@@ -854,7 +856,7 @@ function reproducirIntroduccion() {
         introVideo.play().catch(e => console.log("Error al reproducir video:", e));
     }
 
-    // Esperamos 1.5 segundos (1500 ms) para mostrar y activar el botón "Saltar"
+    // Esperamos 1.5 segundos (1500 ms) para mostrar y activar el botón "Saltar" y las animaciones secundarias
     setTimeout(() => {
         const btnSaltar = document.getElementById("saltar");
         if (btnSaltar) {
@@ -862,24 +864,40 @@ function reproducirIntroduccion() {
             btnSaltar.style.opacity = "1";
             btnSaltar.style.animationPlayState = "running";
         }
-    }, 1500);
-}
 
-    document.getElementById("Introduccion").style.animationPlayState = "running";
-    document.getElementById("saltar").style.animationPlayState = "running";
-    document.getElementById("Letrero").style.animationPlayState = "running";
-    document.getElementById("Libro1").style.animationPlayState = "running";
-    document.getElementById("Empezar").style.animationPlayState = "running";
-    document.getElementById("Texto").style.animationPlayState = "running";
-    document.getElementById("Creditos").style.animationPlayState = "running";
-      
-    document.getElementById("TerminosYCondiciones").style.animation = "CositasMas";
-    document.getElementById("TerminosYCondiciones").style.animationPlayState = "running";
-    document.getElementById("TerminosYCondiciones").style.animationFillMode = "both";
-      
-    document.getElementById("PoliticaDePrivacidad").style.animation = "CositasMas";
-    document.getElementById("PoliticaDePrivacidad").style.animationPlayState = "running";
-    document.getElementById("PoliticaDePrivacidad").style.animationFillMode = "both";
+        // Activamos de manera segura las animaciones que estaban sueltas fuera de función
+        const introElem = document.getElementById("Introduccion");
+        if(introElem) introElem.style.animationPlayState = "running";
+        
+        const letrero = document.getElementById("Letrero");
+        if(letrero) letrero.style.animationPlayState = "running";
+        
+        const libro1 = document.getElementById("Libro1");
+        if(libro1) libro1.style.animationPlayState = "running";
+        
+        const empezar = document.getElementById("Empezar");
+        if(empezar) empezar.style.animationPlayState = "running";
+        
+        const texto = document.getElementById("Texto");
+        if(texto) texto.style.animationPlayState = "running";
+        
+        const creditos = document.getElementById("Creditos");
+        if(creditos) creditos.style.animationPlayState = "running";
+        
+        const tyc = document.getElementById("TerminosYCondiciones");
+        if(tyc) {
+            tyc.style.animation = "CositasMas";
+            tyc.style.animationPlayState = "running";
+            tyc.style.animationFillMode = "both";
+        }
+        
+        const pv = document.getElementById("PoliticaDePrivacidad");
+        if(pv) {
+            pv.style.animation = "CositasMas";
+            pv.style.animationPlayState = "running";
+            pv.style.animationFillMode = "both";
+        }
+    }, 1500);
 }
 
 function mentePrint() {
@@ -927,7 +945,7 @@ function mentePrint() {
         });
     }
 }
-       
+        
 function input() {
     document.getElementById("Leer1").style.visibility = "visible";
     document.getElementById("Leer1").style.fontSize = "50px";
@@ -973,11 +991,11 @@ function input() {
     document.getElementById("Empezar").style.animation = "EmpezarSalto";
     document.getElementById("Empezar").style.animationPlayState = "running";
     document.getElementById("Empezar").style.animationFillMode = "both";
-               
+                
     document.getElementById("Cerrar").style.visibility = "visible";
     document.getElementById("Cerrar").style.fontSize = "20px";
 }
-       
+        
 function enviado() {
     document.getElementById("Enviado").style.fontSize = "18px";
     document.getElementById("escribirTexto").style.visibility = "hidden";
