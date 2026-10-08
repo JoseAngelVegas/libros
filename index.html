@@ -182,8 +182,6 @@ border: 2px;
   #Empezar {
 position: relative;
   animation-play-state: paused;
-
-
   animation: Empezar 0.9s;
   animation-play-state: paused;
   animation-fill-mode: both;
@@ -272,7 +270,6 @@ flex-direction: column;
   #DejaComentario {
        font-size: 0%;
        text-align: center;
-       
   }
   
    #submit {
@@ -293,7 +290,7 @@ border: 1px solid rgba(2, 255, 33, 0.1);
   }
 
 #ElegirModo {
-       font-size: 20px;
+       font-size: 180px;
        display: none;
        text-align: center;
        margin: 0 auto;
@@ -991,9 +988,6 @@ document.getElementById("TerminosYCondiciones").style.animation = "CositasMas";
 
        document.getElementById("ElegirModo").style.display = "block";
 
-       document.getElementById("ElegirEpisodio").style.visibility = "visible";
-    document.getElementById("ElegirEpisodio").style.fontSize = "70px";
-
     document.getElementById("PoliticaDePrivacidad").style.animation = "CositasMasSalto";
     document.getElementById("PoliticaDePrivacidad").style.animationFillMode = "both";
 
@@ -1028,6 +1022,9 @@ const audioAbrir = document.getElementById('audioAbrir');
 }
 
        function Clasico() {
+
+document.getElementById("ElegirEpisodio").style.visibility = "visible";
+    document.getElementById("ElegirEpisodio").style.fontSize = "70px";
 
     document.getElementById("BotonesEspacio").style.gap = "50px";
               
