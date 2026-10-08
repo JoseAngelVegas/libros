@@ -291,6 +291,13 @@ backdrop-filter: blur(20px);
 -webkit-backdrop-filter: blur(20px);
 border: 1px solid rgba(2, 255, 33, 0.1);
   }
+
+#ElegirModo {
+       font-size: 20px;
+       display: none;
+       text-align: center;
+       margin: 0 auto;
+}
   
    #reset {
        font-size: 0px;
@@ -575,6 +582,9 @@ width: 25%;
 <img class="Biologia"  src="https://github.com/JoseAngelVegas/borrador/blob/main/0.50.jpg?raw=true">
 
 </div>
+
+<p id="ElegirModo" onclick="Clasico()">Elegir Modo.</p>
+
 
 <div id="BotonesEspacio">
 
@@ -978,9 +988,8 @@ document.getElementById("TerminosYCondiciones").style.animation = "CositasMas";
 
 
        function mentePrint() {
-              
-    document.getElementById("BotonesEspacio").style.gap = "50px";
 
+       document.getElementById("ElegirModo").style.display = "block";
 
        document.getElementById("ElegirEpisodio").style.visibility = "visible";
     document.getElementById("ElegirEpisodio").style.fontSize = "70px";
@@ -1009,6 +1018,19 @@ document.getElementById("Creditos").style.animationFillMode = "both";
     document.getElementById("Cerrar").style.visibility = "visible";
     document.getElementById("Cerrar").style.fontSize = "20px";
       
+
+const audioAbrir = document.getElementById('audioAbrir');
+    if (audioAbrir) {
+        audioAbrir.play().catch(error => {
+            console.log("El navegador requiere interacción para reproducir el audio:", error);
+        });
+    }
+}
+
+       function Clasico() {
+
+    document.getElementById("BotonesEspacio").style.gap = "50px";
+              
     document.getElementById("Episodio1").style.visibility = "visible";
     document.getElementById("Episodio1").style.fontSize = "50px";
   
@@ -1018,13 +1040,7 @@ document.getElementById("Creditos").style.animationFillMode = "both";
     document.getElementById("Episodio3").style.visibility = "visible";
     document.getElementById("Episodio3").style.fontSize = "50px";
 
-const audioAbrir = document.getElementById('audioAbrir');
-    if (audioAbrir) {
-        audioAbrir.play().catch(error => {
-            console.log("El navegador requiere interacción para reproducir el audio:", error);
-        });
-    }
-}
+       }
        
         function input() {
 
