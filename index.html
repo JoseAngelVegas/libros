@@ -319,24 +319,6 @@ flex-direction: column;
        text-align: center;
        margin: 0 auto;
 }
-  
-   #reset {
-       font-size: 0px;
-       text-align: center;
-        border-radius: 10px;
-        visibility: hidden;
-      margin: 0 auto;
-      width: 100px;
-      height: 30px;
-      display: flex;
-background: rgba(255, 2, 2, 0.53);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(20px);
--webkit-backdrop-filter: blur(20px);
-border: 1px solid rgba(255, 2, 2, 0.1);
-   }
-
 
        
         #Enviado {
@@ -1071,6 +1053,8 @@ document.getElementById("ElegirEpisodio").style.visibility = "visible";
         function input() {
 
        document.getElementById("submit").style.display = "block";
+       document.getElementById("reset").style.display = "block";
+
 
        document.getElementById("Leer1").style.visibility = "visible";
     document.getElementById("Leer1").style.fontSize = "50px";
@@ -1080,14 +1064,8 @@ document.getElementById("ElegirEpisodio").style.visibility = "visible";
     
     document.getElementById("Descripcion1").style.fontSize = "20px"
 
-    
    document.getElementById("label").style.visibility = "visible";
     document.getElementById("label").style.fontSize = "50px";
-
-
-document.getElementById("reset").style.visibility = "visible";
-   document.getElementById("reset").style.fontSize = "15px";
-    
 
 document.getElementById("Libro1").style.animation = "LibroSaltar";
        document.getElementById("Libro1").style.animationPlayState = "running";
