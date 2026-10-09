@@ -64,6 +64,11 @@ object-fit: cover;
   padding: 0;
 }     
 
+#BotonEnviar {
+       display: none;
+       margin: 0 auto;       
+}
+
 
       
 
@@ -579,6 +584,8 @@ width: 25%;
 <img class="Biologia"  src="https://github.com/JoseAngelVegas/borrador/blob/main/0.50.jpg?raw=true">
 
 </div>
+       
+<img id="BotonEnviar" src="https://github.com/JoseAngelVegas/libros/blob/main/Enviar.jpg?raw=true">
 
 <p id="ElegirModo" onclick="Clasico()">Elegir Modo.</p>
 
@@ -1041,6 +1048,7 @@ document.getElementById("ElegirEpisodio").style.visibility = "visible";
        
         function input() {
 
+       document.getElementById("BotonEnviar").style.display = "block";
 
                 document.getElementById("Leer1").style.visibility = "visible";
     document.getElementById("Leer1").style.fontSize = "50px";
