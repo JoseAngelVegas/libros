@@ -337,15 +337,13 @@ flex-direction: column;
          }
 
         #Cerrar {
-       font-size: 0%;
-padding: 5px;
-width: 25%;
-       text-align: center;
+display: none;
+     padding: 5px;
+      width: 25%;
        position: fixed;
        top: 0%;
         left: 0%;
        z-index: 200;
-       visibility: hidden;
          }
 
         @keyframes spin {
@@ -479,6 +477,9 @@ width: 25%;
 <audio id="audioEpisodio1Abrir" src="Episodio1Abrir.wav" preload="auto"></audio>
 <audio id="audioEpisodio2Abrir" src="Episodio2Abrir.wav" preload="auto"></audio>
 <audio id="audioEpisodio3Abrir" src="Episodio3AbrirV1.wav" preload="auto"></audio>
+
+<img id="Cerrar" onclick="cerrar()" src="https://github.com/JoseAngelVegas/libros/blob/main/Cerrar.jpg?raw=true">
+
        
 
 <p class="Texto" id="Texto"> Algo pasa por la mente de Print. Click en él para entrar a su mente. </p>
@@ -505,9 +506,6 @@ width: 25%;
 
 <p class="CositasMas" id="TerminosYCondiciones" onclick="TerminosYCondiciones(); window.scrollTo({ top: 0, behavior: 'smooth' })"> Términos y Condiciones. </p>
 <p class="CositasMas" id="PoliticaDePrivacidad" onclick="PoliticaDePrivacidad(); window.scrollTo({ top: 0, behavior: 'smooth' });"> Política de privacidad. </p>   
-
-
-<button id="Cerrar" onclick="cerrar()"> X </button>
 
 <div id="MoverLeer">
 
@@ -1020,8 +1018,7 @@ document.getElementById("Creditos").style.animationFillMode = "both";
     document.getElementById("Empezar").style.animation = "EmpezarSalto";
     document.getElementById("Empezar").style.animationFillMode = "both";
 
-    document.getElementById("Cerrar").style.visibility = "visible";
-    document.getElementById("Cerrar").style.fontSize = "20px";
+    document.getElementById("Cerrar").style.display = "block";
       
 
 const audioAbrir = document.getElementById('audioAbrir');
@@ -1097,8 +1094,8 @@ document.getElementById("Empezar").style.animation = "EmpezarSalto";
         document.getElementById("Empezar").style.animationFillMode = "both";
 
                
- document.getElementById("Cerrar").style.visibility = "visible";
-  document.getElementById("Cerrar").style.fontSize = "20px";
+    document.getElementById("Cerrar").style.display = "block";
+
                
         }
        
@@ -1362,8 +1359,8 @@ document.getElementById("Creditos").style.animationFillMode = "both";
   document.getElementById("Empezar").style.animation = "EmpezarSalto";
       document.getElementById("Empezar").style.animationFillMode = "both";
 
-        document.getElementById("Cerrar").style.visibility = "visible";
-  document.getElementById("Cerrar").style.fontSize = "20px";
+    document.getElementById("Cerrar").style.display = "block";
+
 
 }
       
@@ -1415,8 +1412,8 @@ document.getElementById("Creditos").style.animationFillMode = "both";
   document.getElementById("Empezar").style.animation = "EmpezarSalto";
       document.getElementById("Empezar").style.animationFillMode = "both";
 
-        document.getElementById("Cerrar").style.visibility = "visible";
-  document.getElementById("Cerrar").style.fontSize = "20px";
+        document.getElementById("Cerrar").style.display = "block";
+
 
 
 
@@ -1459,8 +1456,8 @@ document.getElementById("Creditos").style.animationFillMode = "both";
   document.getElementById("Empezar").style.animation = "EmpezarSalto";
       document.getElementById("Empezar").style.animationFillMode = "both";
 
-        document.getElementById("Cerrar").style.visibility = "visible";
-  document.getElementById("Cerrar").style.fontSize = "20px";
+    document.getElementById("Cerrar").style.display = "block";
+
 
          const abrirCreditos = document.querySelectorAll(".Creditos");
       for (let i = 0; i < abrirCreditos.length; i++) {
