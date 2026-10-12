@@ -181,7 +181,6 @@ object-fit: cover;
   #saltar {
   position: relative;
   top: 500px;
-  box-shadow: 0px 0px 2.5px;
   justify-self: end;
   animation: SaltarBoton 0.2s;
   animation-play-state: paused;
@@ -491,10 +490,10 @@ display: none;
 
 <img class="Libro" id="Libro1" onclick="input(); window.scrollTo({ top: 0, behavior: 'smooth' })" src="https://github.com/JoseAngelVegas/borrador/blob/main/Sin%20nombre%20ni%20nada.png?raw=true">
 
-
-<video muted playsinline webkit-playsinline autoplay class="Boton" id="saltar" onclick="saltarIntroduccion()" poster="https://github.com/JoseAngelVegas/libros/blob/main/CerrarPoster.png?raw=true">
+<video autoplay muted loop playsinline webkit-playsinline class="Boton" id="saltar" onclick="saltarIntroduccion()" poster="https://github.com/JoseAngelVegas/libros/blob/main/CerrarPoster.png?raw=true">
   <source src="CerrarAnimacion.mp4" type="video/mp4">
 </video>
+       
 
 <!-- Por un error, saltar se llama cerrar. -->
 
