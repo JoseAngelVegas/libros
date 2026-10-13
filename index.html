@@ -151,6 +151,18 @@ object-fit: cover;
   display: grid;
   gap: 0px;
 }
+
+#ModoClasico {
+       display: none;
+       width: 150px;
+       height: 150px;
+}
+
+#ModoInmersivo {
+       display: none;
+       width: 150px;
+       height: 150px;
+}
   
        #Episodio1  {
   background-color: white;
@@ -589,7 +601,15 @@ display: none;
 
 </div>
        
-<p id="ElegirModo" onclick="Clasico()">Elegir Modo.</p>
+<p id="ElegirModo">Elegir Modo.</p>
+
+<video autoplay muted loop playsinline webkit-playsinline id="ModoClasico" onclick="Clasico()" poster="https://github.com/JoseAngelVegas/libros/blob/main/ModoClasicoPoster.png?raw=true">
+  <source src="ModoClasicoAnimacion.mp4" type="video/mp4">
+</video>
+
+<video autoplay muted loop playsinline webkit-playsinline id="ModoInmersivo" poster="https://github.com/JoseAngelVegas/libros/blob/main/ModoInmersivoPoster.png?raw=true">
+  <source src="ModoInmersivoAnimacion.mp4" type="video/mp4">
+</video>
 
 
 <div id="BotonesEspacio">
@@ -996,6 +1016,11 @@ document.getElementById("TerminosYCondiciones").style.animation = "CositasMas";
        function mentePrint() {
 
        document.getElementById("ElegirModo").style.display = "block";
+
+       document.getElementById("ModoClasico").style.display = "block";
+
+              document.getElementById("ModoInmersivo").style.display = "block";
+
 
     document.getElementById("PoliticaDePrivacidad").style.animation = "CositasMasSalto";
     document.getElementById("PoliticaDePrivacidad").style.animationFillMode = "both";
