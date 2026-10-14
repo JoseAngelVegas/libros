@@ -251,17 +251,11 @@ position: relative;
   }
 
    #TerminosYCondiciones {
-  position: relative;
-  animation: CositasMas 1s;
-  animation-play-state: paused;
-  animation-fill-mode: both;
+  display: none;
   }
   
    #PoliticaDePrivacidad {
-  position: relative;
-  animation: CositasMas 1s;
-  animation-play-state: paused;
-  animation-fill-mode: both;
+  display: none;
   }
   
   .Libro {
@@ -992,13 +986,10 @@ document.getElementById("Empezar").style.animationPlayState = "running";
                document.getElementById("Creditos").style.animationPlayState = "running";
           
          
-document.getElementById("TerminosYCondiciones").style.animation = "CositasMas";
-       document.getElementById("TerminosYCondiciones").style.animationPlayState = "running";
-        document.getElementById("TerminosYCondiciones").style.animationFillMode = "both";
-        
-         document.getElementById("PoliticaDePrivacidad").style.animation = "CositasMas";
-       document.getElementById("PoliticaDePrivacidad").style.animationPlayState = "running";
-        document.getElementById("PoliticaDePrivacidad").style.animationFillMode = "both";
+document.getElementById("TerminosYCondiciones").style.display = "block";
+       
+              
+        document.getElementById("PoliticaDePrivacidad").style.display = "block";
 
 }
 
@@ -1012,11 +1003,8 @@ document.getElementById("TerminosYCondiciones").style.animation = "CositasMas";
               document.getElementById("ModoInmersivo").style.display = "block";
 
 
-    document.getElementById("PoliticaDePrivacidad").style.animation = "CositasMasSalto";
-    document.getElementById("PoliticaDePrivacidad").style.animationFillMode = "both";
-
-    document.getElementById("TerminosYCondiciones").style.animation = "CositasMasSalto";
-    document.getElementById("TerminosYCondiciones").style.animationFillMode = "both";
+    document.getElementById("PoliticaDePrivacidad").style.display = "none";
+     document.getElementById("TerminosYCondiciones").style.display = "none";
 
     document.getElementById("Letrero").style.animation = "AnimacionLetreroSalto";
     document.getElementById("Letrero").style.animationFillMode = "both";
@@ -1091,14 +1079,11 @@ document.getElementById("Letrero").style.animation = "AnimacionLetreroSalto";
        document.getElementById("Letrero").style.animationPlayState = "running";
         document.getElementById("Letrero").style.animationFillMode = "both";
 
-document.getElementById("TerminosYCondiciones").style.animation = "CositasMasSalto";
-       document.getElementById("TerminosYCondiciones").style.animationPlayState = "running";
-        document.getElementById("TerminosYCondiciones").style.animationFillMode = "both";
+document.getElementById("TerminosYCondiciones").style.display = "none";
+       
         
-         document.getElementById("PoliticaDePrivacidad").style.animation = "CositasMasSalto";
-       document.getElementById("PoliticaDePrivacidad").style.animationPlayState = "running";
-        document.getElementById("PoliticaDePrivacidad").style.animationFillMode = "both";
-
+         document.getElementById("PoliticaDePrivacidad").style.display = "none";
+       
 document.getElementById("Texto").style.animation = "TextoSalto";
        document.getElementById("Texto").style.animationPlayState = "running";
         document.getElementById("Texto").style.animationFillMode = "both";
@@ -1254,13 +1239,11 @@ document.getElementById("Texto").style.animation = "Texto";
        document.getElementById("Texto").style.animationPlayState = "running";
         document.getElementById("Texto").style.animationFillMode = "both";
         
-        document.getElementById("TerminosYCondiciones").style.animation = "CositasMas";
-       document.getElementById("TerminosYCondiciones").style.animationPlayState = "running";
-        document.getElementById("TerminosYCondiciones").style.animationFillMode = "both";
+        document.getElementById("TerminosYCondiciones").style.display = "block";
+       
         
-         document.getElementById("PoliticaDePrivacidad").style.animation = "CositasMas";
-       document.getElementById("PoliticaDePrivacidad").style.animationPlayState = "running";
-        document.getElementById("PoliticaDePrivacidad").style.animationFillMode = "both";
+         document.getElementById("PoliticaDePrivacidad").style.display = "block";
+       
 
 document.getElementById("escribirTexto").style.visibility = "hidden";
                 document.getElementById("escribirTexto").style.fontSize = "0px";
