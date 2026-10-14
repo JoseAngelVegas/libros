@@ -167,25 +167,25 @@ object-fit: cover;
 }
   
        #Episodio1  {
-  background-color: white;
-  text-align: center;
-  border-radius: 5px;
-  box-shadow: 0px 0px 2.5px;
+       display: none;
+       width: 35%;
+       height: 35%;
+       margin: 0 auto;
   }
   
   #Episodio2  {
-  background-color: white;
-  text-align: center;
-  border-radius: 5px;
-  box-shadow: 0px 0px 2.5px;
+display: none;
+       width: 35%;
+       height: 35%;
+       margin: 0 auto;
   
   }
   
   #Episodio3  {
-   background-color: white;
-  text-align: center;
-  border-radius: 5px;
-  box-shadow: 0px 0px 2.5px;
+display: none;
+       width: 35%;
+       height: 35%;
+       margin: 0 auto;
   
   }
 
@@ -1068,14 +1068,11 @@ document.getElementById("ElegirEpisodio").style.visibility = "visible";
 
     document.getElementById("BotonesEspacio").style.gap = "50px";
               
-    document.getElementById("Episodio1").style.visibility = "visible";
-    document.getElementById("Episodio1").style.fontSize = "50px";
+    document.getElementById("Episodio1").style.display = "block";
   
-    document.getElementById("Episodio2").style.visibility = "visible";
-    document.getElementById("Episodio2").style.fontSize = "50px";
-  
-    document.getElementById("Episodio3").style.visibility = "visible";
-    document.getElementById("Episodio3").style.fontSize = "50px";
+    document.getElementById("Episodio2").style.display = "block";
+
+    document.getElementById("Episodio3").style.display = "block";
 
        }
        
@@ -1296,14 +1293,11 @@ document.getElementById("Cerrar").style.display = "none";
        document.getElementById("Leer1").style.display = "none";
 
 
-        document.getElementById("Episodio1").style.visibility = "hidden";
-  document.getElementById("Episodio1").style.fontSize = "0px";
+    document.getElementById("Episodio1").style.display = "none";
+  
+    document.getElementById("Episodio2").style.display = "none";
 
-         document.getElementById("Episodio2").style.visibility = "hidden";
-  document.getElementById("Episodio2").style.fontSize = "0px";
-
-         document.getElementById("Episodio3").style.visibility = "hidden";
-  document.getElementById("Episodio3").style.fontSize = "0px";
+    document.getElementById("Episodio3").style.display = "none";
        
   document.getElementById("ElegirEpisodio").style.visibility = "hidden";
     document.getElementById("ElegirEpisodio").style.fontSize = "0px";
